@@ -91,6 +91,12 @@ footer {
     position: relative; z-index: 1;
 }
 
+.export {
+    position: relative;
+    z-index: 1;
+    margin: 2rem 1rem 1rem;
+}
+
 @media (min-width: 576px) {
     .container {
         max-width: 540px;

@@ -33,6 +33,7 @@
     </div>
 
     <div class="container">
+        <a href="export.php" class="btn export">Termékek exportálása</a>
         <div class="item-list">
             <?php
             $products = json_decode(file_get_contents(__DIR__ . '/products.json'), true);
