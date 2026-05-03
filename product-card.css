@@ -1,7 +1,12 @@
 .product-card {
+    flex-flow: column;
     border-radius: 1.5rem;
-    background-color: white;
+    background-color: var(--white);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card.out-of-stock {
+    background-color: var(--gray-100);
 }
 
 .product-card .image-wrapper {
@@ -32,6 +37,7 @@
 
 .product-card .body-wrapper {
     padding: 0.5rem 1rem 1rem;
+    flex: 1;
 }
 
 .product-card .body-wrapper .title {

@@ -33,18 +33,23 @@
     </div>
 
     <div class="container">
-        <div class="item-list">
-            <div class="product-card">
+        <div class="item-list" id="product-list"></div>
+
+    <script>
+        function formatPrice(price) {
+            return price.toLocaleString('hu-HU') + ' Ft';
+        }
+
+        function productCard(product) {
+            const buttonText = product.stock > 0 ? 'Kosárba' : 'Értesítést kérek';
+            return `
+            <div class="product-card${product.stock === 0 ? ' out-of-stock' : ''}">
                 <div class="image-wrapper">
-                    <img src="/images/prod_1.webp" alt="Bosch Condens 7000 W P70 23 fali kondenzációs gázkazán">
+                    <img src="${product.image}" alt="${product.name}">
                 </div>
                 <div class="body-wrapper">
-                    <div class="title">
-                        Bosch Condens 7000 W P70 23 fali kondenzációs gázkazán, fűtő, 69,5kw, fehér
-                    </div>
-                    <div class="sku">
-                        BOSCH-7736702387
-                    </div>
+                    <div class="title">${product.name}</div>
+                    <div class="sku">${product.sku}</div>
                     <div class="tags">
                         <div class="tag">
                             A
@@ -62,16 +67,19 @@
                 </div>
                 <div class="card-footer">
                     <div class="price-wrapper">
-                        <div class="price">
-                            2.375.418 Ft
-                        </div>
+                        <div class="price">${formatPrice(product.price)}</div>
                     </div>
-                    <div class="btn">
-                        Értesítést kérek
-                    </div>
+                    <div class="btn">${buttonText}</div>
                 </div>
-            </div>
-        </div>
+            </div>`;
+        }
+
+        fetch('products.json')
+            .then(response => response.json())
+            .then(products => {
+                document.getElementById('product-list').innerHTML = products.map(productCard).join('');
+            });
+    </script>
     </div>
 
 </main>

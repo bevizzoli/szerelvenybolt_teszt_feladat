@@ -11,6 +11,9 @@
     --text-color: #0C1E38;
     --alt-text-color: #8FA8C2;
     --cream: #F4F2ED;
+    --gray-100: #EEF0F2;
+    --gray-300: #B8BEC6;
+    --gray-600: #5A6472;
 }
 
 body {
@@ -127,7 +130,7 @@ footer {
     }
 
     .product-card {
-        display: block;
+        display: flex;
     }
 }
 
@@ -155,7 +158,7 @@ footer {
     }
 
     .product-card {
-        display: block;
+        display: flex;
     }
 }
 
