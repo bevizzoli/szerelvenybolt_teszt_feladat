@@ -33,23 +33,21 @@
     </div>
 
     <div class="container">
-        <div class="item-list" id="product-list"></div>
-
-    <script>
-        function formatPrice(price) {
-            return price.toLocaleString('hu-HU') + ' Ft';
-        }
-
-        function productCard(product) {
-            const buttonText = product.stock > 0 ? 'Kosárba' : 'Értesítést kérek';
-            return `
-            <div class="product-card${product.stock === 0 ? ' out-of-stock' : ''}">
+        <div class="item-list">
+            <?php
+            $products = json_decode(file_get_contents(__DIR__ . '/products.json'), true);
+            foreach ($products as $product):
+                $buttonText = $product['stock'] > 0 ? 'Kosárba' : 'Értesítést kérek';
+                $outOfStock = $product['stock'] === 0 ? ' out-of-stock' : '';
+                $formattedPrice = number_format($product['price'], 0, ',', ' ') . ' Ft';
+            ?>
+            <div class="product-card<?= $outOfStock ?>">
                 <div class="image-wrapper">
-                    <img src="${product.image}" alt="${product.name}">
+                    <img src="<?= $product['image'] ?>" alt="<?= $product['name'] ?>">
                 </div>
                 <div class="body-wrapper">
-                    <div class="title">${product.name}</div>
-                    <div class="sku">${product.sku}</div>
+                    <div class="title"><?= $product['name'] ?></div>
+                    <div class="sku"><?= $product['sku'] ?></div>
                     <div class="tags">
                         <div class="tag">
                             A
@@ -67,19 +65,13 @@
                 </div>
                 <div class="card-footer">
                     <div class="price-wrapper">
-                        <div class="price">${formatPrice(product.price)}</div>
+                        <div class="price"><?= $formattedPrice ?></div>
                     </div>
-                    <div class="btn">${buttonText}</div>
+                    <a href="#" class="btn"><?= $buttonText ?></a>
                 </div>
-            </div>`;
-        }
-
-        fetch('products.json')
-            .then(response => response.json())
-            .then(products => {
-                document.getElementById('product-list').innerHTML = products.map(productCard).join('');
-            });
-    </script>
+            </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 
 </main>

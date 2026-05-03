@@ -34,11 +34,11 @@ main {
 header {
     padding: 2rem;
     background-color: var(--b800);
-    color: white;
+    color: var(--white);
 }
 
 header a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
 }
 
@@ -51,7 +51,7 @@ footer {
     margin-top: auto;
     padding: 2rem;
     background-color: var(--b800);
-    color: white;
+    color: var(--white);
 }
 
 .container {
@@ -64,9 +64,13 @@ footer {
     font-weight: 600;
     border-radius: 1rem;
     background-color: var(--b800);
-    color: white;
+    color: var(--white);
     font-size: 0.875rem;
     padding: 0.5rem 0.75rem;
+}
+
+.btn:hover {
+    background-color: var(--b600);
 }
 
 .tag {
